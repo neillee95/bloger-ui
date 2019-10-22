@@ -1,0 +1,49 @@
+.nav {
+  height: 64px;
+  line-height: 64px;
+  background-color: white;
+}
+
+.el-col {
+  min-height: 1px;
+}
+
+a {
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.nav-title {
+  padding: 0 16px;
+}
+
+.nav-menu {
+  text-align: right;
+  padding: 0 16px;
+
+  &-item {
+    padding: 8px 16px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+}
+
+.nav-drawer-toggle {
+  text-align: center;
+
+  &-button {
+    font-size: 20px;
+    border: none;
+  }
+}
+
+.nav-drawer {
+  z-index: 1000;
+}
