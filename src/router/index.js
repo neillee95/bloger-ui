@@ -9,6 +9,24 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/admin/login',
+    name: 'login',
+    component: () => import('../views/admin/Login')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/admin/Layout'),
+    redirect: '/admin/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('../views/admin/Dashboard')
+      }
+    ]
+  },
+  {
     path: '/',
     name: 'layout',
     component: Layout,
@@ -43,6 +61,11 @@ const routes = [
         path: 'aboutme',
         name: 'abountme',
         component: () => import('../views/AboutMe')
+      },
+      {
+        path: 'a/:id(\\S+)',
+        name: 'article',
+        component: () => import('../views/Article')
       }
     ]
   }
@@ -56,6 +79,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   store.commit('closeDrawer');
+  if (to.path.startsWith('/admin')) {
+    //TODO Whether has permission to access the uri.
+  }
   next();
 });
 

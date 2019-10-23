@@ -1,14 +1,17 @@
 <template>
   <div>
-    <span v-html="content"></span>
+    <p v-html="content"></p>
+    <message-board/>
   </div>
 </template>
 
 <script>
   import marked from 'marked';
+  import MessageBoard from "../components/MessageBoard";
 
   export default {
     name: "AboutMe",
+    components: {MessageBoard},
     data() {
       return {
         markdownContent:

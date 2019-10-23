@@ -1,12 +1,12 @@
 <template>
   <div>
-    article {{$route.params.id}}
+    Login
   </div>
 </template>
 
 <script>
   export default {
-    name: "Article"
+    name: "Login"
   }
 </script>
 

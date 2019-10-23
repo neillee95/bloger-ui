@@ -1,0 +1,76 @@
+<template>
+  <el-row class="wrapper">
+    <el-col class="sidebar" :span="6">
+      <el-menu class="sidebar-menu"
+               background-color="#545c64"
+               text-color="#fff"
+               active-text-color="#ffd04b"
+               default-active="dashboard">
+        <el-menu-item index="dashboard">
+          <i class="el-icon-menu"></i>
+          <span slot="title">仪表盘</span>
+        </el-menu-item>
+        <el-menu-item index="article">
+          <i class="el-icon-menu"></i>
+          <span slot="title">文章</span>
+        </el-menu-item>
+        <el-menu-item index="system">
+          <i class="el-icon-menu"></i>
+          <span slot="title">系统</span>
+        </el-menu-item>
+      </el-menu>
+    </el-col>
+    <el-col :span="18" style="background-color: #f7f7f7">
+      <navigation/>
+      <div class="main">
+        <transition name="fade">
+          <router-view/>
+        </transition>
+      </div>
+    </el-col>
+  </el-row>
+</template>
+
+<script>
+  import Navigation from "../../components/admin/Navigation";
+
+  export default {
+    name: "Layout",
+    components: {Navigation}
+  }
+</script>
+
+<style lang="scss" scoped>
+  .wrapper {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .el-col {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .sidebar {
+
+    &::-webkit-scrollbar {
+      display: none
+    }
+
+    &-menu {
+      min-height: 100%;
+    }
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .fade-enter-to, .fade-leave-active {
+    transition: opacity .2s;
+  }
+
+  .fade-enter-active, .fade-leave-to {
+    opacity: 0;
+  }
+</style>

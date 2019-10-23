@@ -26,13 +26,13 @@
 
 <style lang="scss" scoped>
   .wrapper {
-    background-color: #f7f7f7;
     height: 100%;
     min-height: 100%;
     overflow: auto;
   }
 
   .main {
+    background-color: #f7f7f7;
     clear: both;
     min-height: calc(100% - 195px);
     overflow: auto;
