@@ -23,6 +23,16 @@ const routes = [
         path: 'dashboard',
         name: 'dashboard',
         component: () => import('../views/admin/Dashboard')
+      },
+      {
+        path: 'article/create',
+        name: 'createArticle',
+        component: () => import('../views/admin/EditArticle')
+      },
+      {
+        path: 'articles',
+        name: 'articles',
+        component: () => import('../views/admin/Articles')
       }
     ]
   },

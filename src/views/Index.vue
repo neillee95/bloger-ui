@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <el-row :gutter="10">
-      <el-col :xs="24" :sm="12" :md="8" :lg="6" v-for="p in 17" :key="p">
-        <router-link to="/a/1">
-          <el-card class="article-card" :body-style="{ padding: '0px' }">
-            <el-image class="article-image" :src="articleImage" fit="cover" lazy/>
-            <div class="article-title">
-              <div style="margin: 2px 0;font-weight: bold">SpringApplication启动过程启动过程SpringApplication</div>
-              <div class="article-time">{{new Date()}}</div>
-            </div>
-          </el-card>
-        </router-link>
-      </el-col>
-    </el-row>
-  </div>
+  <el-row :gutter="10" style="overflow: auto">
+    <el-col :xs="24" :sm="12" :md="8" :lg="6" v-for="p in 17" :key="p">
+      <router-link to="/a/1">
+        <el-card class="article-card" :body-style="{ padding: '0px' }">
+          <el-image class="article-image" :src="articleImage" fit="cover" lazy/>
+          <div class="article-title">
+            <div style="margin: 2px 0;font-weight: bold">SpringApplication启动过程启动过程SpringApplication</div>
+            <div class="article-time">{{new Date()}}</div>
+          </div>
+        </el-card>
+      </router-link>
+    </el-col>
+  </el-row>
 </template>
 
 <script>

@@ -5,15 +5,20 @@
                background-color="#545c64"
                text-color="#fff"
                active-text-color="#ffd04b"
-               default-active="dashboard">
-        <el-menu-item index="dashboard">
+               :default-active="$route.path"
+               router>
+        <el-menu-item index="/admin/dashboard">
           <i class="el-icon-menu"></i>
           <span slot="title">仪表盘</span>
         </el-menu-item>
-        <el-menu-item index="article">
-          <i class="el-icon-menu"></i>
-          <span slot="title">文章</span>
-        </el-menu-item>
+        <el-submenu index="article">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>文章</span>
+          </template>
+          <el-menu-item index="/admin/article/create" :route="{path:'/admin/article/create'}">创建文章</el-menu-item>
+          <el-menu-item index="/admin/articles" :route="{path:'/admin/articles'}">全部文章</el-menu-item>
+        </el-submenu>
         <el-menu-item index="system">
           <i class="el-icon-menu"></i>
           <span slot="title">系统</span>
