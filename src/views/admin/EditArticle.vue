@@ -4,9 +4,6 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title"/>
       </el-form-item>
-      <el-form-item label="内容" prop="content">
-        <el-input type="textarea" v-model="form.content"></el-input>
-      </el-form-item>
       <el-form-item label="标签" prop="tags">
         <el-input v-model="form.tags"/>
       </el-form-item>
@@ -33,6 +30,9 @@
                         type="datetime"
                         placeholder="选择发布日期时间"/>
       </el-form-item>
+      <el-form-item label="内容">
+        <markdown-editor ref="editor" :init-val="form.content" @content-changed="contentChanged"/>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit('form')">立即创建</el-button>
         <el-button @click="reset('form')">重置</el-button>
@@ -42,8 +42,13 @@
 </template>
 
 <script>
+  import MarkdownEditor from "../../components/MarkdownEditor";
+
+  import {getCookies, removeCookies, setCookies} from "../../utils/cookie";
+
   export default {
     name: "EditArticle",
+    components: {MarkdownEditor},
     data() {
       return {
         form: {
@@ -60,9 +65,6 @@
           title: [
             {required: true, message: '请输入文章标题', trigger: 'blur'},
             {min: 4, max: 32, message: '长度在 4 到 32 个字符', trigger: 'blur'}
-          ],
-          content: [
-            {required: true, message: '请输入内容', trigger: 'blur'}
           ],
           tags: [
             {required: true, message: '请输入标签', trigger: 'blur'}
@@ -84,10 +86,16 @@
       }
     },
     methods: {
+      contentChanged(newVal) {
+        if (newVal) {
+          setCookies("content", newVal, {hours: 2});
+        }
+      },
       submit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             alert('submit!');
+
           } else {
             console.log('error submit!!');
             return false;
@@ -96,6 +104,28 @@
       },
       reset(formName) {
         this.$refs[formName].resetFields();
+      }
+    },
+    created() {
+      const unsavedContent = getCookies("content");
+      if (unsavedContent) {
+        this.$confirm('是否加载未保存的内容?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '本次取消',
+          type: 'info'
+        }).then(() => {
+          this.$refs['editor'].setValue(unsavedContent);
+          this.$message({
+            type: 'success',
+            message: '加载成功!'
+          });
+        }).catch(() => {
+          removeCookies("content");
+          this.$message({
+            type: 'info',
+            message: '已取消!'
+          });
+        });
       }
     }
   }
