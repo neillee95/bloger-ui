@@ -33,6 +33,11 @@ const routes = [
         path: 'articles',
         name: 'articles',
         component: () => import('../views/admin/Articles')
+      },
+      {
+        path: 'system',
+        name: 'system',
+        component: () => import('../views/admin/System')
       }
     ]
   },

@@ -19,7 +19,7 @@
           <el-menu-item index="/admin/article/create" :route="{path:'/admin/article/create'}">创建文章</el-menu-item>
           <el-menu-item index="/admin/articles" :route="{path:'/admin/articles'}">全部文章</el-menu-item>
         </el-submenu>
-        <el-menu-item index="system">
+        <el-menu-item index="/admin/system">
           <i class="el-icon-menu"></i>
           <span slot="title">系统</span>
         </el-menu-item>

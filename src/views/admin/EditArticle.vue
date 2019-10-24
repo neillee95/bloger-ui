@@ -2,13 +2,13 @@
   <div>
     <el-form :model="form" :rules="rules" ref="form" label-width="120px">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="form.title"/>
+        <el-input v-model="form.title" maxlength="16" show-word-limit/>
       </el-form-item>
       <el-form-item label="标签" prop="tags">
         <el-input v-model="form.tags"/>
       </el-form-item>
       <el-form-item label="分类" prop="category">
-        <el-input v-model="form.category"/>
+        <el-input v-model="form.category" maxlength="16" show-word-limit/>
       </el-form-item>
       <el-form-item label="是否可以评论" prop="canComment">
         <el-radio-group v-model="form.canComment">
@@ -31,6 +31,12 @@
                         placeholder="选择发布日期时间"/>
       </el-form-item>
       <el-form-item label="内容">
+        <el-upload style="margin-bottom: 16px"
+                   action="https://baidu.com"
+                   :before-upload="beforeUpload">
+          <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件</el-button>
+          <div slot="tip" class="el-upload__tip">选择 <b>Markdown</b> 文件上传</div>
+        </el-upload>
         <markdown-editor ref="editor" :init-val="form.content" @content-changed="contentChanged"/>
       </el-form-item>
       <el-form-item>
@@ -95,7 +101,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             alert('submit!');
-
+            removeCookies("content");
           } else {
             console.log('error submit!!');
             return false;
@@ -104,6 +110,19 @@
       },
       reset(formName) {
         this.$refs[formName].resetFields();
+        this.$refs['editor'].setValue("");
+      },
+      beforeUpload(file) {
+        if (!file.name.endsWith(".md")) {
+          this.$message.error('只能上传Markdown文件');
+        }
+        const reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = (event) => {
+          const content = event.target.result;
+          this.$refs['editor'].setValue(content);
+        };
+        return false;
       }
     },
     created() {
