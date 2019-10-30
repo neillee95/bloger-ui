@@ -103,6 +103,7 @@
       submit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            this.form.content = this.$refs['editor'].getMarkdown();
             alert('submit!');
             removeCookies("content");
           } else {

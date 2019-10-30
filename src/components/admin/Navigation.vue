@@ -17,6 +17,8 @@
   .nav {
     padding: 12px 16px;
     background-color: white;
+    height: 48px;
+    line-height: 48px;
   }
 
   a {

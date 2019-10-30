@@ -38,6 +38,11 @@ const routes = [
         path: 'system',
         name: 'system',
         component: () => import('../views/admin/System')
+      },
+      {
+        path: 'aboutme',
+        name: 'aboutme',
+        component: () => import('../views/admin/AboutMe')
       }
     ]
   },

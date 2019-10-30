@@ -13,16 +13,20 @@
   let editor;
   let timerId;
 
+  function fullScreen() {
+
+  }
+
   export default {
     name: "MarkdownEditor",
     props: {
       initVal: {
         type: String,
-        required: true
+        default: ''
       },
       autoSaveTimeout: {
         type: Number,
-        default: 2000
+        default: 5000
       }
     },
     methods: {
@@ -38,6 +42,16 @@
         if (editor) {
           editor.setValue(value);
         }
+      },
+      getMarkdown() {
+        if (editor) {
+          return editor.getMarkdown();
+        }
+      },
+      getHtml() {
+        if (editor) {
+          return editor.getHtml();
+        }
       }
     },
     created() {
@@ -47,11 +61,11 @@
           initialEditType: 'markdown',
           initialValue: this.initVal,
           previewStyle: 'vertical',
-          height: '500px',
+          height: '800px',
           events: {
             change: this.contentChanged
           }
-        })
+        });
       });
     }
   }
