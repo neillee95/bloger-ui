@@ -5,7 +5,22 @@
         <el-input v-model="form.title" maxlength="16" show-word-limit/>
       </el-form-item>
       <el-form-item label="标签" prop="tags">
-        <el-input v-model="form.tags"/>
+        <el-tag :key="tag"
+                v-for="tag in form.tags"
+                closable
+                :disable-transitions="false"
+                @close="handleClose(tag)">
+          {{tag}}
+        </el-tag>
+        <el-input class="input-new-tag"
+                  v-if="inputVisible"
+                  v-model="inputValue"
+                  ref="saveTagInput"
+                  size="small"
+                  @keyup.enter.native="handleInputConfirm"
+                  @blur="handleInputConfirm">
+        </el-input>
+        <el-button v-else class="button-new-tag" size="small" @click="showInput" :style="{marginLeft: this.inputTagMargin}">+ New Tag</el-button>
       </el-form-item>
       <el-form-item label="分类" prop="category">
         <el-input v-model="form.category" maxlength="16" show-word-limit/>
@@ -50,76 +65,29 @@
 </template>
 
 <script>
+  import mixin from "@/mixins/admin/EditArticle";
+
   export default {
     name: "EditArticle",
-    data() {
-      return {
-        form: {
-          title: '',
-          content: '',
-          cover: '',
-          tags: '',
-          category: '',
-          canComment: true,
-          publish: true,
-          publishNow: true,
-          publishTime: ''
-        },
-        rules: {
-          title: [
-            {required: true, message: '请输入文章标题', trigger: 'blur'},
-            {min: 4, max: 32, message: '长度在 4 到 32 个字符', trigger: 'blur'}
-          ],
-          tags: [
-            {required: true, message: '请输入标签', trigger: 'blur'}
-          ],
-          category: [
-            {required: true, message: '请输入分类', trigger: 'blur'}
-          ],
-          publishTime: []
-        }
-      };
-    },
-    watch: {
-      "form.publishNow"(newVal, _) {
-        if (!newVal) {
-          this.rules['publishTime'] = [
-            {required: true, message: '请选择发布日期', trigger: 'blur'}
-          ];
-        }
-      }
-    },
-    methods: {
-      submit(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      reset(formName) {
-        this.$refs[formName].resetFields();
-        this.form.content = '';
-      },
-      beforeUpload(file) {
-        if (file.name.endsWith(".md")) {
-          const reader = new FileReader();
-          reader.readAsText(file, "UTF-8");
-          reader.onload = (event) => {
-            this.form.content = event.target.result;
-          };
-        } else {
-          this.$message.error('只能上传Markdown文件');
-        }
-        return false;
-      }
-    }
+    mixins: [mixin]
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .el-tag + .el-tag {
+    margin-left: 10px;
+  }
 
+  .button-new-tag {
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
+  }
 </style>
