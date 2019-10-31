@@ -40,9 +40,24 @@ const routes = [
         component: () => import('../views/admin/System')
       },
       {
+        path: 'comments',
+        name: 'comments',
+        component: () => import('../views/admin/Comments')
+      },
+      {
         path: 'aboutme',
         name: 'aboutme',
         component: () => import('../views/admin/AboutMe')
+      },
+      {
+        path: 'drafts',
+        name: 'drafts',
+        component: () => import('../views/admin/Drafts')
+      },
+      {
+        path: 'pubqueue',
+        name: 'pubqueue',
+        component: () => import('../views/admin/PublicationQueue')
       }
     ]
   },

@@ -20,7 +20,7 @@
                   @keyup.enter.native="handleInputConfirm"
                   @blur="handleInputConfirm">
         </el-input>
-        <el-button v-else class="button-new-tag" size="small" @click="showInput" :style="{marginLeft: this.inputTagMargin}">+ New Tag</el-button>
+        <el-button v-else class="button-new-tag" size="small" @click="showInput" :style="{marginLeft: this.inputTagMargin}">+ 标签</el-button>
       </el-form-item>
       <el-form-item label="分类" prop="category">
         <el-input v-model="form.category" maxlength="16" show-word-limit/>
