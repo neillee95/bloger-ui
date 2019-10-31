@@ -65,6 +65,7 @@
 
   .el-col {
     height: 100%;
+    min-height: 100%;
     overflow: auto;
   }
 
@@ -82,7 +83,7 @@
   .main {
     padding: 16px;
     height: calc(100% - 104px);
-    overflow: auto;
+    /*overflow: auto;*/
   }
 
   .fade-enter-to, .fade-leave-active {

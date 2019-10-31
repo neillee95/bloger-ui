@@ -34,29 +34,24 @@
                         placeholder="选择发布日期时间"/>
       </el-form-item>
       <el-form-item label="内容">
-        <el-upload style="margin-bottom: 16px"
-                   action="" :before-upload="beforeUpload">
-          <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件</el-button>
+        <el-upload style="margin-bottom: 16px" action="" :before-upload="beforeUpload">
+          <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件
+          </el-button>
           <div slot="tip" class="el-upload__tip">选择 <b>Markdown</b> 文件上传</div>
         </el-upload>
-        <markdown-editor ref="editor" :init-val="form.content" @content-changed="contentChanged"/>
+        <mavon-editor style="min-height: 400px" v-model="form.content"></mavon-editor>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submit('form')">立即创建</el-button>
-        <el-button @click="reset('form')">重置</el-button>
+        <el-button type="primary" @click="submit('form')" round>立即创建</el-button>
+        <el-button @click="reset('form')" round>重置</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import MarkdownEditor from "../../components/MarkdownEditor";
-
-  import {getCookies, removeCookies, setCookies} from "../../utils/cookie";
-
   export default {
     name: "EditArticle",
-    components: {MarkdownEditor},
     data() {
       return {
         form: {
@@ -95,17 +90,10 @@
       }
     },
     methods: {
-      contentChanged(newVal) {
-        if (newVal) {
-          setCookies("content", newVal, {hours: 2});
-        }
-      },
       submit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.form.content = this.$refs['editor'].getMarkdown();
             alert('submit!');
-            removeCookies("content");
           } else {
             console.log('error submit!!');
             return false;
@@ -114,41 +102,19 @@
       },
       reset(formName) {
         this.$refs[formName].resetFields();
-        this.$refs['editor'].setValue("");
+        this.form.content = '';
       },
       beforeUpload(file) {
-        if (!file.name.endsWith(".md")) {
+        if (file.name.endsWith(".md")) {
+          const reader = new FileReader();
+          reader.readAsText(file, "UTF-8");
+          reader.onload = (event) => {
+            this.form.content = event.target.result;
+          };
+        } else {
           this.$message.error('只能上传Markdown文件');
         }
-        const reader = new FileReader();
-        reader.readAsText(file, "UTF-8");
-        reader.onload = (event) => {
-          const content = event.target.result;
-          this.$refs['editor'].setValue(content);
-        };
         return false;
-      }
-    },
-    created() {
-      const unsavedContent = getCookies("content");
-      if (unsavedContent) {
-        this.$confirm('是否加载未保存的内容?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '本次取消',
-          type: 'info'
-        }).then(() => {
-          this.$refs['editor'].setValue(unsavedContent);
-          this.$message({
-            type: 'success',
-            message: '加载成功!'
-          });
-        }).catch(() => {
-          removeCookies("content");
-          this.$message({
-            type: 'info',
-            message: '已取消!'
-          });
-        });
       }
     }
   }

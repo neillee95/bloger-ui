@@ -1,23 +1,24 @@
 <template>
   <div>
-    <markdown-viewer :init-val="markdownContent"/>
+    <div v-html="content"></div>
     <message-board/>
   </div>
 </template>
 
 <script>
   import MessageBoard from "../components/MessageBoard";
-  import MarkdownViewer from "../components/MarkdownViewer";
+
+  import marked from 'marked/marked.min';
 
   export default {
     name: "AboutMe",
-    components: {MarkdownViewer, MessageBoard},
+    components: {MessageBoard},
     data() {
       return {
         markdownContent:
           '### About me\n' +
-          '`hello world`<br>' +
-          'Markdown动态生成<br>' +
+          '`hello world`\n' +
+          'Markdown动态生成\n' +
           '```html' +
           '<!doctype html>' +
           '<html lang="en">' +
@@ -27,12 +28,17 @@
           '</head>' +
           '<body>' +
           '  <div id="content"></div>' +
-          '  <script src="//cdn.jsdelivr.net/npm/marked/marked.min.js"/>' +
+          '  <script src="cdn.jsdelivr.net/npm/marked/marked.min.js"/>' +
           '    document.getElementById(\'content\').innerHTML =' +
           '      marked(\'# Marked in browser\\n\\nRendered by **marked**.\');' +
           '</body>' +
           '</html>' +
           '```'
+      }
+    },
+    computed: {
+      content() {
+        return marked(this.markdownContent, { sanitize: true });
       }
     }
   }
