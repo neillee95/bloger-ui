@@ -21,7 +21,6 @@
           <el-menu-item index="/admin/article/create" :route="{path:'/admin/article/create'}">创建文章</el-menu-item>
           <el-menu-item index="/admin/articles" :route="{path:'/admin/articles'}">全部文章</el-menu-item>
           <el-menu-item index="/admin/drafts" :route="{path:'/admin/drafts'}">草稿箱</el-menu-item>
-          <el-menu-item index="/admin/pubqueue" :route="{path:'/admin/pubqueue'}">发表队列</el-menu-item>
         </el-submenu>
 
         <el-menu-item index="/admin/comments">

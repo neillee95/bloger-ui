@@ -41,7 +41,7 @@
 
 <style scoped>
   .search-input {
-    margin: 16px 0;
-    width: 480px;
+    margin-bottom: 16px;
+    width: 320px;
   }
 </style>

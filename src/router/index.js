@@ -53,11 +53,6 @@ const routes = [
         path: 'drafts',
         name: 'drafts',
         component: () => import('../views/admin/Drafts')
-      },
-      {
-        path: 'pubqueue',
-        name: 'pubqueue',
-        component: () => import('../views/admin/PublicationQueue')
       }
     ]
   },

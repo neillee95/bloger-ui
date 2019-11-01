@@ -40,14 +40,14 @@
           <el-radio :label="false">否</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item v-if="form.publish" label="即刻发布">
-        <el-switch v-model="form.publishNow"></el-switch>
-      </el-form-item>
-      <el-form-item v-if="!form.publishNow" label="发布日期时间" prop="publishTime">
-        <el-date-picker v-model="form.publishTime"
-                        type="datetime"
-                        placeholder="选择发布日期时间"/>
-      </el-form-item>
+<!--      <el-form-item v-if="form.publish" label="即刻发布">-->
+<!--        <el-switch v-model="form.publishNow"></el-switch>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item v-if="!form.publishNow" label="发布日期时间" prop="publishTime">-->
+<!--        <el-date-picker v-model="form.publishTime"-->
+<!--                        type="datetime"-->
+<!--                        placeholder="选择发布日期时间"/>-->
+<!--      </el-form-item>-->
       <el-form-item label="内容">
         <el-upload style="margin-bottom: 16px" action="" :before-upload="beforeUpload">
           <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件

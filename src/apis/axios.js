@@ -18,7 +18,7 @@ axiosInstance.interceptors.request.use(
     return config
   },
   error => {
-    console.log(Promise.reject(error));
+    return Promise.reject(error);
   }
 );
 
@@ -30,13 +30,6 @@ axiosInstance.interceptors.response.use(
     if (response) {
       const status = response.status;
       switch (status) {
-        case 400:
-          Message({
-            message: '参数不正确 ',
-            type: 'error',
-            duration: 3 * 1000
-          });
-          break;
         case 401: {
           MessageBox.confirm('登录信息已失效，请重新登录', '提示', {
             confirmButtonText: '重新登录',
@@ -44,7 +37,7 @@ axiosInstance.interceptors.response.use(
             type: 'warning'
           }).then(() => {
             removeToken();
-            router.push({path: '/login'});
+            location.reload();
           })
         }
           break;
@@ -58,13 +51,6 @@ axiosInstance.interceptors.response.use(
         case 404:
           router.push({path: '/404'});
           break;
-        case 405:
-          Message({
-            message: error.response.data.message,
-            type: 'error',
-            duration: 3 * 1000
-          });
-          break;
         case 500:
           Message({
             message: '请求错误' + error,
@@ -73,14 +59,15 @@ axiosInstance.interceptors.response.use(
           });
           break;
       }
+      return response;
     } else {
       Message({
         message: '请求失败' + error,
         type: 'error',
         duration: 3 * 1000
-      })
+      });
+      return Promise.reject(error);
     }
-    return Promise.reject(error)
   }
 );
 

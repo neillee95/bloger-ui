@@ -12,8 +12,8 @@ const mixin = {
         category: '',
         canComment: true,
         publish: true,
-        publishNow: true,
-        publishTime: ''
+        // publishNow: true,
+        // publishTime: ''
       },
       rules: {
         title: [
@@ -26,7 +26,7 @@ const mixin = {
         category: [
           {required: true, message: '请输入分类', trigger: 'blur'}
         ],
-        publishTime: []
+        // publishTime: []
       },
       inputVisible: false,
       inputValue: ''
@@ -37,15 +37,15 @@ const mixin = {
       return this.form.tags.length === 0 ? 0 : '10px';
     }
   },
-  watch: {
-    "form.publishNow"(newVal, _) {
-      if (!newVal) {
-        this.rules['publishTime'] = [
-          {required: true, message: '请选择发布日期', trigger: 'blur'}
-        ];
-      }
-    }
-  },
+  // watch: {
+  //   "form.publishNow"(newVal, _) {
+  //     if (!newVal) {
+  //       this.rules['publishTime'] = [
+  //         {required: true, message: '请选择发布日期', trigger: 'blur'}
+  //       ];
+  //     }
+  //   }
+  // },
   methods: {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
