@@ -4,7 +4,8 @@
                    layout="prev, pager, next"
                    :total="total"
                    :background="true"
-                   :hide-on-single-page="hideOnSinglePage"/>
+                   :hide-on-single-page="hideOnSinglePage"
+                   @current-change="pageChanged"/>
   </div>
 </template>
 
@@ -23,6 +24,11 @@
       hideOnSinglePage: {
         type: Boolean,
         default: true
+      }
+    },
+    methods: {
+      pageChanged(currentPage) {
+        this.$emit('page-changed', currentPage);
       }
     }
   }

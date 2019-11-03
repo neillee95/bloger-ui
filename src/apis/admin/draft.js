@@ -7,7 +7,3 @@ export function getDrafts() {
 export function publish(articleId) {
   return axios.put(`/admin/article/${articleId}/publish`);
 }
-
-export function unpublish(articleId) {
-  return axios.put(`/admin/article/${articleId}/unpublish`);
-}

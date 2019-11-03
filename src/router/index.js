@@ -30,6 +30,11 @@ const routes = [
         component: () => import('../views/admin/EditArticle')
       },
       {
+        path: 'article/:id(\\S+)/edit',
+        name: 'editArticle',
+        component: () => import('../views/admin/EditArticle')
+      },
+      {
         path: 'articles',
         name: 'articles',
         component: () => import('../views/admin/Articles')
@@ -53,6 +58,11 @@ const routes = [
         path: 'drafts',
         name: 'drafts',
         component: () => import('../views/admin/Drafts')
+      },
+      {
+        path: 'article/:id(\\S+)/preview',
+        name: 'articlePreview',
+        component: () => import('../views/admin/ArticlePreview')
       }
     ]
   },
