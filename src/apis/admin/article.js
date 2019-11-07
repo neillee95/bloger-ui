@@ -1,12 +1,23 @@
 import axios from '../axios';
-import qs from 'qs';
 
 export function saveArticle(article) {
-  return axios.post('/admin/article', qs.stringify(article));
+  return axios.post('/admin/article', JSON.stringify(article),
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
 }
 
 export function updateArticle(articleId, article) {
-  return axios.post(`/admin/article/${articleId}`, qs.stringify(article));
+  return axios.put(`/admin/article/${articleId}`, JSON.stringify(article),
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
 }
 
 export function getArticle(articleId) {

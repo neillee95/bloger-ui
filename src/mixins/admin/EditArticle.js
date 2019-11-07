@@ -9,24 +9,15 @@ const mixin = {
         content: '',
         cover: '',
         tags: [],
-        category: '',
+        type: '原创',
         canComment: true,
-        publish: true,
-        // publishNow: true,
-        // publishTime: ''
+        publish: true
       },
       rules: {
         title: [
           {required: true, message: '请输入文章标题', trigger: 'blur'},
-          {min: 4, max: 32, message: '长度在 4 到 32 个字符', trigger: 'blur'}
-        ],
-        tags: [
-          {required: true, message: '请输入标签', trigger: 'blur'}
-        ],
-        category: [
-          {required: true, message: '请输入分类', trigger: 'blur'}
-        ],
-        // publishTime: []
+          {min: 4, message: '至少 4 个字符', trigger: 'blur'}
+        ]
       },
       inputVisible: false,
       inputValue: ''
@@ -34,18 +25,9 @@ const mixin = {
   },
   computed: {
     inputTagMargin() {
-      return this.form.tags.length === 0 ? 0 : '10px';
+      return (!this.form.tags || this.form.tags.length === 0) ? 0 : '10px';
     }
   },
-  // watch: {
-  //   "form.publishNow"(newVal, _) {
-  //     if (!newVal) {
-  //       this.rules['publishTime'] = [
-  //         {required: true, message: '请选择发布日期', trigger: 'blur'}
-  //       ];
-  //     }
-  //   }
-  // },
   methods: {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
@@ -103,7 +85,6 @@ const mixin = {
     handleClose(tag) {
       this.form.tags.splice(this.form.tags.indexOf(tag), 1);
     },
-
     showInput() {
       this.inputVisible = true;
       this.$nextTick(_ => {

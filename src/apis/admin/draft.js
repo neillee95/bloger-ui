@@ -5,5 +5,5 @@ export function getDrafts() {
 }
 
 export function publish(articleId) {
-  return axios.put(`/admin/article/${articleId}/publish`);
+  return axios.put(`/admin/draft/${articleId}/publish`);
 }

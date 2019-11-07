@@ -1,7 +1,7 @@
 <template>
-  <el-form :model="form" :rules="rules" ref="form" label-width="120px" :key="$route.path">
+  <el-form :model="form" :rules="rules" ref="form" label-width="80px" :key="$route.path">
     <el-form-item label="标题" prop="title">
-      <el-input v-model="form.title" maxlength="16" show-word-limit/>
+      <el-input v-model="form.title" maxlength="64" show-word-limit/>
     </el-form-item>
     <el-form-item label="标签" prop="tags">
       <el-tag :key="tag"
@@ -23,13 +23,18 @@
                  :style="{marginLeft: this.inputTagMargin}">+ 标签
       </el-button>
     </el-form-item>
-    <el-form-item label="分类" prop="category">
-      <el-input v-model="form.category" maxlength="16" show-word-limit/>
+    <el-form-item label="类型" prop="type">
+      <el-select v-model="form.type">
+        <el-option label="原创" value="原创"></el-option>
+        <el-option label="转载" value="转载"></el-option>
+        <el-option label="翻译" value="翻译"></el-option>
+        <el-option label="其他" value="其他"></el-option>
+      </el-select>
     </el-form-item>
     <el-form-item label="封面图">
       <el-input v-model="form.cover"/>
     </el-form-item>
-    <el-form-item label="是否可以评论">
+    <el-form-item label="启用评论">
       <el-radio-group v-model="form.canComment">
         <el-radio :label="true">是</el-radio>
         <el-radio :label="false">否</el-radio>
@@ -41,26 +46,18 @@
         <el-radio :label="false">否</el-radio>
       </el-radio-group>
     </el-form-item>
-<!--    <el-form-item v-if="form.publish" label="即刻发布">-->
-<!--      <el-switch v-model="form.publishNow"></el-switch>-->
-<!--    </el-form-item>-->
-<!--    <el-form-item v-if="!form.publishNow" label="发布日期时间" prop="publishTime">-->
-<!--      <el-date-picker v-model="form.publishTime"-->
-<!--                      type="datetime"-->
-<!--                      placeholder="选择发布日期时间"/>-->
-<!--    </el-form-item>-->
-    <el-form-item label="内容">
+    <el-form-item label="内容" style="margin-bottom: -8px">
       <el-upload style="margin-bottom: 16px" action="" :before-upload="beforeUpload">
         <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件
         </el-button>
-        <div slot="tip" class="el-upload__tip">选择 <b>Markdown</b> 文件上传</div>
+        <div slot="tip" class="el-upload__tip">或者选择 <b>Markdown</b> 文件上传</div>
       </el-upload>
-      <mavon-editor style="min-height: 400px" v-model="form.content"></mavon-editor>
     </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submit('form')" round>立即创建</el-button>
+    <mavon-editor style="min-height: 800px" v-model="form.content"></mavon-editor>
+    <div style="margin: 16px 80px">
+      <el-button type="primary" @click="submit('form')" round>立即{{$route.params['id']?'更新':'创建'}}</el-button>
       <el-button @click="reset('form')" round>重置</el-button>
-    </el-form-item>
+    </div>
   </el-form>
 </template>
 

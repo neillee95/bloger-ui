@@ -1,6 +1,6 @@
 <template>
   <el-row class="wrapper">
-    <el-col class="sidebar" :span="6">
+    <el-col class="sidebar" :span="4">
       <el-menu class="sidebar-menu"
                background-color="#545c64"
                text-color="#fff"
@@ -43,7 +43,7 @@
 
       </el-menu>
     </el-col>
-    <el-col :span="18" style="background-color: #f7f7f7">
+    <el-col :span="20" style="background-color: #f7f7f7">
       <navigation/>
       <div class="main">
         <transition name="fade">

@@ -12,18 +12,22 @@
           <router-link :to="`/admin/article/${scope.row.id}/preview`" title="预览">{{scope.row.title}}</router-link>
         </template>
       </el-table-column>
-      <el-table-column prop="category" label="分类" width="200"/>
-      <el-table-column label="标签" width="320">
+      <el-table-column prop="type" label="类型" width="80"/>
+      <el-table-column label="标签" width="260">
         <template slot-scope="scope">
           <el-tag v-for="(tag,index) in scope.row.tags" :key="index">{{tag}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="createTime" label="创建时间" width="200"/>
-      <el-table-column label="操作" width="200">
+      <el-table-column prop="createTime" label="创建时间" width="180">
         <template slot-scope="scope">
-          <el-button @click="handlePublish(scope.row.id)" type="success" size="small">发布</el-button>
-          <el-button @click="handleEdit(scope.row.id)" type="primary" size="small">编辑</el-button>
-          <el-button @click="handleDelete(scope.row.id)" type="danger" size="small">删除</el-button>
+          {{dateFormat(scope.row.createTime)}}
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="120">
+        <template slot-scope="scope">
+          <el-button class="color-success" @click="handlePublish(scope.row.id)" type="text" size="small">发布</el-button>
+          <el-button @click="handleEdit(scope.row.id)" type="text" size="small">编辑</el-button>
+          <el-button class="color-danger" @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -34,62 +38,12 @@
 
 <script>
   import Pagination from "@/components/Pagination";
-
-  import {deleteArticle} from "@/apis/admin/article";
-  import {getDrafts} from "@/apis/admin/draft";
-  import response from "@/apis/response";
+  import mixin from "@/mixins/admin/Drafts";
 
   export default {
     name: "Drafts",
     components: {Pagination},
-    data() {
-      return {
-        search: '',
-        articles: [
-          {id: 1, title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx', category: 'xuuxxx', tags:['Java', 'Kotlin', '源码分析'], createTime: '2019-11-01 12:00:00'},
-          {id: 2, title: 'xxxxxxxxxxxxxxoooooxxxxxxxxxx', category: 'xxxzzx', createTime: '2019-11-01 12:00:00'},
-          {id: 3, title: 'xxxxxxaaaaaaaxxxxxxxffffxxxxx', category: 'xxooxx', tags:['Java', 'Kotlin', '源码分析', 'SpringBoot', 'SpringCloud'], createTime: '2019-11-01 12:00:00'},
-        ]
-      }
-    },
-    methods: {
-      handlePublish(articleId) {
-
-      },
-      handleEdit(articleId) {
-        this.$router.push(`/admin/article/${articleId}/edit`);
-      },
-      handleDelete(articleId) {
-        this.$confirm('删除后无法恢复, 是否确定?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.deleteArticle(articleId);
-        }).catch();
-      },
-      deleteArticle(articleId) {
-        deleteArticle(articleId).then(({data}) => {
-          if (data && data.code === response.success) {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-            this.getDrafts();
-          }
-        });
-      },
-      getDrafts() {
-        getDrafts().then(({data}) => {
-          if (data) {
-            this.articles = data.data;
-          }
-        });
-      }
-    },
-    created() {
-      // this.getDrafts();
-    }
+    mixins: [mixin]
   }
 </script>
 
@@ -114,5 +68,15 @@
 
   .el-button {
     margin: 2px;
+  }
+
+  .color {
+    &-success {
+      color: #67C23A;
+    }
+
+    &-danger {
+      color: #f56c6c;
+    }
   }
 </style>

@@ -6,9 +6,10 @@
 </template>
 
 <script>
+  import 'markdown-it-highlight/dist/index.css';
   import MessageBoard from "../components/MessageBoard";
 
-  import marked from 'marked/marked.min';
+  import md from '@/utils/markdown-it';
 
   export default {
     name: "AboutMe",
@@ -38,7 +39,7 @@
     },
     computed: {
       content() {
-        return marked(this.markdownContent, { sanitize: true });
+        return md.render(this.markdownContent);
       }
     }
   }
