@@ -1,7 +1,7 @@
 <template>
   <el-form :model="form" :rules="rules" ref="form" label-width="80px" :key="$route.path">
     <el-form-item label="标题" prop="title">
-      <el-input v-model="form.title" maxlength="64" show-word-limit/>
+      <el-input ref="title" v-model="form.title" maxlength="64" show-word-limit/>
     </el-form-item>
     <el-form-item label="标签" prop="tags">
       <el-tag :key="tag"

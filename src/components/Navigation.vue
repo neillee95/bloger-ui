@@ -5,7 +5,10 @@
       <el-col :xs="24" :sm="20">
         <el-row>
           <el-col class="nav-title" :xs="20" :sm="12">
-            <router-link class="title" to="/">Lee's Blog</router-link>
+            <router-link class="title" to="/">
+              <img class="avatar" src="https://avatars3.githubusercontent.com/u/19601938?v=4"/>
+              Lee's Blog
+            </router-link>
           </el-col>
           <el-col class="nav-menu" :xs="0" :sm="12">
             <router-link class="nav-menu-item" to="/tags">Tags</router-link>

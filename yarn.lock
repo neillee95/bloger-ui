@@ -759,6 +759,11 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@saeris/vue-spinners@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npm.taobao.org/@saeris/vue-spinners/download/@saeris/vue-spinners-1.0.8.tgz#bc66975143ccfeeb60d38eb207729384804ee755"
+  integrity sha1-vGaXUUPM/utg046yB3KThIBO51U=
+
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@soda/friendly-errors-webpack-plugin/-/friendly-errors-webpack-plugin-1.7.1.tgz#706f64bcb4a8b9642b48ae3ace444c70334d615d"
@@ -4797,12 +4802,22 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+markdown-it-anchor@^5.2.5:
+  version "5.2.5"
+  resolved "https://registry.npm.taobao.org/markdown-it-anchor/download/markdown-it-anchor-5.2.5.tgz#dbf13cfcdbffd16a510984f1263e1d479a47d27a"
+  integrity sha1-2/E8/Nv/0WpRCYTxJj4dR5pH0no=
+
 markdown-it-highlight@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npm.taobao.org/markdown-it-highlight/download/markdown-it-highlight-0.2.0.tgz#6955a438eefed1cde54edd5ea6b9f6b186846fb1"
   integrity sha1-aVWkOO7+0c3lTt1eprn2sYaEb7E=
   dependencies:
     highlight.js "^9.12.0"
+
+markdown-it-toc-done-right@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-toc-done-right/download/markdown-it-toc-done-right-4.1.0.tgz#0f73ed531dda427c43c27716a2fc2208daa90605"
+  integrity sha1-D3PtUx3aQnxDwncWovwiCNqpBgU=
 
 markdown-it@^10.0.0:
   version "10.0.0"
@@ -7927,6 +7942,11 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
+
+vue-ins-progress-bar@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npm.taobao.org/vue-ins-progress-bar/download/vue-ins-progress-bar-1.3.0.tgz#596b0ebc843a9176e922eb747edbac3872517fb5"
+  integrity sha1-WWsOvIQ6kXbpIut0ftusOHJRf7U=
 
 vue-loader@^15.7.0:
   version "15.7.1"

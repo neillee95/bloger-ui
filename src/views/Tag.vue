@@ -2,19 +2,19 @@
   <div>
     <div><b>Tag</b> {{$route.params['name']}}</div>
     <ol>
-      <li>
-        <el-link href="/a/1">SpringApplication启动过程</el-link>
-      </li>
-      <li>
-        <el-link href="/a/2">Tomcat在SpringBoot中的启动过程</el-link>
+      <li v-for="(item,index) in articles" :key="index">
+        <el-link :href="`/a/${item.id}`">{{item.title}}</el-link>
       </li>
     </ol>
   </div>
 </template>
 
 <script>
+  import mixin from "@/mixins/tag";
+
   export default {
-    name: "Tag"
+    name: "Tag",
+    mixins: [mixin]
   }
 </script>
 

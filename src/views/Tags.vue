@@ -1,26 +1,20 @@
 <template>
   <div>
-    <div><span style="margin: 0 4px;color: #a22029">#</span>共有{{3}}个Tag</div>
+    <div><span style="margin: 0 4px;color: #a22029">#</span>共有 {{(tags || []).length}} 个Tag</div>
     <div style="margin: 16px 0">
-      <router-link to="/tag/源码">
-        <el-tag effect="dark">源码</el-tag>
-      </router-link>
-      <router-link to="/tag/SpringBoot">
-        <el-tag effect="dark">SpringBoot</el-tag>
-      </router-link>
-      <router-link to="/tag/Java">
-        <el-tag effect="dark">Java</el-tag>
-      </router-link>
-      <router-link to="/tag/Tomcat">
-        <el-tag effect="dark">Tomcat</el-tag>
+      <router-link :to="`/tag/${escape(tag)}`" v-for="(tag,index) in tags" :key="index">
+        <el-tag effect="dark">{{tag}}</el-tag>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
+  import mixin from "@/mixins/tags";
+
   export default {
-    name: "Tags"
+    name: "Tags",
+    mixins: [mixin]
   }
 </script>
 

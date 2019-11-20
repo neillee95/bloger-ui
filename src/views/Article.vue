@@ -1,36 +1,35 @@
 <template>
-  <el-row>
-    <el-col :span="18">
-      <article-body :article-id="$route.params['id']"/>
-      <el-card class="comment-box">
-        评论
-      </el-card>
-    </el-col>
-    <el-col class="side-bar" :span="6">
-      <div style="position: fixed; top: 16px">
-        目录
-      </div>
-    </el-col>
-  </el-row>
+  <div>
+    <el-row>
+      <el-col :xs="24" :sm="18">
+        <article-body :article-id="$route.params['id']" @toc-generated="generateToc"/>
+        <el-card class="comment-box">
+          评论
+        </el-card>
+      </el-col>
+      <el-col class="side-bar" :xs="0" :sm="6">
+        <div :class="{'catalog-fixed': scrollTop > 80}">
+          <div>目录</div>
+          <div v-html="toc"></div>
+        </div>
+      </el-col>
+    </el-row>
+
+    <back-top v-show="scrollTop > 200"></back-top>
+  </div>
+
 </template>
 
 <script>
-  import ArticleBody from "../components/ArticleBody";
+  import ArticleBody from "@/components/ArticleBody";
+  import BackTop from "@/components/BackTop";
+
+  import mixin from "@/mixins/article";
 
   export default {
     name: "Article",
-    components: {ArticleBody},
-    methods: {
-      handleScroll() {
-        console.log(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
-      }
-    },
-    created() {
-      window.addEventListener('scroll', this.handleScroll, true);
-    },
-    destroyed() {
-      window.removeEventListener('scroll', this.handleScroll, true);
-    }
+    components: {ArticleBody, BackTop},
+    mixins: [mixin]
   }
 </script>
 
@@ -40,7 +39,13 @@
   }
 
   .side-bar {
-    padding: 0 32px;
+    padding: 0 16px;
+  }
+
+  .catalog-fixed {
+    position: fixed;
+    top: 16px;
+    width: 18%;
   }
 
   .el-divider__text {

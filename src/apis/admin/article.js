@@ -20,10 +20,6 @@ export function updateArticle(articleId, article) {
   );
 }
 
-export function getArticle(articleId) {
-  return axios.get(`/admin/article/${articleId}`);
-}
-
 export function getArticles() {
   return axios.get('/admin/articles');
 }

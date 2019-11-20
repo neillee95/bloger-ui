@@ -6,6 +6,7 @@
         <div>开放、自由、民主、和平</div>
         <div><a href="https://github.com/neillee95" target="_blank">GitHub</a></div>
         <div><a href="mailto:crossthebackstreet@gmail.com">e-mail</a></div>
+        <div style="text-align: center; margin: 16px 0">Powered by Bloger</div>
       </el-col>
       <el-col :xs="0" :md="2"/>
     </el-row>

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import store from "@/store";
 
 import {adminRoute, appRoute} from "./modules";
 
@@ -22,12 +21,4 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  store.commit('closeDrawer');
-  if (to.path.startsWith('/admin')) {
-    //TODO Whether has permission to access the uri.
-  }
-  next();
-});
-
-export default router
+export default router;

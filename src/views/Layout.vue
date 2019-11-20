@@ -11,12 +11,13 @@
       <el-col :xs="0" :sm="2"/>
     </el-row>
     <Footer/>
+
   </div>
 </template>
 
 <script>
-  import Navigation from "../components/Navigation";
-  import Footer from '../components/Footer';
+  import Navigation from "@/components/Navigation";
+  import Footer from '@/components/Footer';
 
   export default {
     name: "Layout",
@@ -28,14 +29,14 @@
   .wrapper {
     height: 100%;
     min-height: 100%;
-    overflow: auto;
+    overflow: visible;
   }
 
   .main {
     background-color: #f7f7f7;
     clear: both;
     min-height: calc(100% - 195px);
-    overflow: auto;
+    overflow: visible;
   }
 
   .fade-enter-to, .fade-leave-active {

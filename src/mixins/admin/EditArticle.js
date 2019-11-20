@@ -1,4 +1,5 @@
-import {saveArticle, updateArticle, getArticle} from "@/apis/admin/article";
+import {saveArticle, updateArticle} from "@/apis/admin/article";
+import {getArticle} from '@/apis/article';
 import response from "@/apis/response";
 
 const mixin = {
@@ -91,7 +92,6 @@ const mixin = {
         this.$refs.saveTagInput.$refs.input.focus();
       });
     },
-
     handleInputConfirm() {
       let inputValue = this.inputValue;
       if (inputValue) {
@@ -108,6 +108,9 @@ const mixin = {
         this.form = data.data;
       });
     }
+    this.$nextTick(() => {
+      this.$refs['title'].focus();
+    });
   }
 };
 

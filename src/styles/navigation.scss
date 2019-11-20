@@ -14,7 +14,7 @@ a {
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .nav-title {
@@ -46,4 +46,12 @@ a {
 
 .nav-drawer {
   z-index: 1000;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  margin-right: 8px;
+  vertical-align: -12px;
 }

@@ -18,7 +18,7 @@ const appRoute = {
       component: () => import('@/views/Tags')
     },
     {
-      path: 'tag/:name(\\S+)',
+      path: 'tag/:name(.+)',
       name: 'tag',
       component: () => import('@/views/Tag')
     },
@@ -26,11 +26,6 @@ const appRoute = {
       path: 'archives',
       name: 'archives',
       component: () => import('@/views/Archives')
-    },
-    {
-      path: 'archive/:name(\\S+)',
-      name: 'archive',
-      component: () => import('@/views/Archive')
     },
     {
       path: 'aboutme',
