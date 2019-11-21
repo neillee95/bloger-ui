@@ -19,6 +19,10 @@ const mixin = {
     },
     dateFormat(timestamp) {
       return dateFormat(timestamp);
+    },
+    removeMarkdownSymbol(content) {
+      const reg = /[`#*\[\]\-!>]/g;
+      return content.replace(reg, "") + "...";
     }
   },
   created() {

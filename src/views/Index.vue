@@ -7,7 +7,7 @@
           <el-card class="article-card" :body-style="{ padding: '0px' }">
             <el-image class="article-image" :src="articleImage" fit="cover" lazy/>
             <div class="article-summary" v-show="summary===item.id">
-              {{item.content}}
+              {{removeMarkdownSymbol(item.content)}}
             </div>
             <div class="article-title">
               <div class="article-title__text">{{item.title}}</div>

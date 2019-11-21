@@ -21,21 +21,21 @@ function getTime({days, hours, minutes, seconds}) {
 
 function dayToTime(day) {
   if (day && !isNaN(day)) {
-    return day * 24 * 60 * 60 * 1000;
+    return hourToTime(day * 24);
   }
   return 0;
 }
 
 function hourToTime(hour) {
   if (hour && !isNaN(hour)) {
-    return hour * 60 * 60 * 1000;
+    return minuteToTime(hour * 60);
   }
   return 0;
 }
 
 function minuteToTime(minute) {
   if (minute && !isNaN(minute)) {
-    return minute * 60 * 1000;
+    return secondToTime(minute * 60);
   }
   return 0;
 }
