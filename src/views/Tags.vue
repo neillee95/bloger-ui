@@ -2,8 +2,8 @@
   <div>
     <div><span style="margin: 0 4px;color: #a22029">#</span>共有 {{(tags || []).length}} 个Tag</div>
     <div style="margin: 16px 0">
-      <router-link :to="`/tag/${escape(tag)}`" v-for="(tag,index) in tags" :key="index">
-        <el-tag effect="dark">{{tag}}</el-tag>
+      <router-link :to="`/tag/${escape(tag._id)}`" v-for="(tag,index) in tags" :key="index">
+        <el-tag effect="dark">{{tag._id}} ({{tag.count}})</el-tag>
       </router-link>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <el-timeline>
       <el-timeline-item v-for="(item,index) in archives"
                         :key="index"
-                        :timestamp="item.timePoint"
+                        :timestamp="`${item.timePoint} (${(item.articles || []).length})`"
                         placement="top"
                         size="large"
                         color="#409eff">
