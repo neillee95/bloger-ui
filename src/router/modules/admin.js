@@ -25,9 +25,19 @@ const adminRoute = {
       component: () => import('@/views/admin/Articles')
     },
     {
-      path: 'system',
-      name: 'system',
-      component: () => import('@/views/admin/System')
+      path: 'system/blog',
+      name: 'blog',
+      component: () => import('@/views/admin/Blog')
+    },
+    {
+      path: 'system/export',
+      name: 'export',
+      component: () => import('@/views/admin/Export')
+    },
+    {
+      path: 'system/password',
+      name: 'password',
+      component: () => import('@/views/admin/Password')
     },
     {
       path: 'comments',
