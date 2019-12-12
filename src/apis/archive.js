@@ -1,5 +1,5 @@
 import axios from "./axios";
 
-export function getArchives(page, size) {
-  return axios.get('/archives', {params: {"page": page, "size": size}});
+export function getArchives(skip, size) {
+  return axios.get('/archives', {params: {"skip": skip, "size": size}});
 }

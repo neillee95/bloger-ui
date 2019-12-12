@@ -1,13 +1,19 @@
 <template>
   <div>
     <el-timeline>
-      <el-timeline-item v-for="(item,index) in articles" :key="index"
-                        :timestamp="timestamp(item)" placement="top" size="large" color="#409eff">
-        <el-card v-for="(article,index) in Object.values(item)[0]" :key="index" style="margin-bottom: 8px">
+      <el-timeline-item v-for="(item,index) in archives"
+                        :key="index"
+                        :timestamp="item.timePoint"
+                        placement="top"
+                        size="large"
+                        color="#409eff">
+        <el-card v-for="(article, index) in item.articles"
+                 :key="index"
+                 style="margin-bottom: 8px">
           <p class="create-time">
             {{dateFormat(article.createTime)}}
           </p>
-          <el-link type="primary" :href="`/a/${article.id}`" target="_blank">
+          <el-link type="primary" :href="`/a/${article._id}`">
             {{article.title}}
           </el-link>
         </el-card>
@@ -15,19 +21,19 @@
     </el-timeline>
 
     <div style="text-align: center">
-      <bounce-loader :size="32" color="#409eff" :loading="loading" style="display: inline-block"></bounce-loader>
+      <progress-spinner style="width: 32px" v-show="loading"/>
       <span v-show="!hasMore">没有更多了~</span>
     </div>
   </div>
 </template>
 
 <script>
-  import {BounceLoader} from '@saeris/vue-spinners';
   import mixin from "@/mixins/archives";
+  import ProgressSpinner from "@/components/ProgressSpinner";
 
   export default {
     name: "Archives",
-    components: {BounceLoader},
+    components: {ProgressSpinner},
     mixins: [mixin]
   }
 </script>
