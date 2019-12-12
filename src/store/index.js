@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    openDrawer: true
+    openDrawer: true,
+    preference: {}
   },
   mutations: {
     toggleDrawer(state) {
@@ -16,8 +17,9 @@ export default new Vuex.Store({
     },
     closeDrawer(state) {
       state.openDrawer = false;
+    },
+    setPreference(state, preference) {
+      state.preference = preference;
     }
-  },
-  actions: {},
-  modules: {}
+  }
 })

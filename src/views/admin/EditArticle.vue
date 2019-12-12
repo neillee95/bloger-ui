@@ -25,10 +25,10 @@
     </el-form-item>
     <el-form-item label="类型" prop="type">
       <el-select v-model="form.type">
-        <el-option label="原创" value="原创"></el-option>
-        <el-option label="转载" value="转载"></el-option>
-        <el-option label="翻译" value="翻译"></el-option>
-        <el-option label="其他" value="其他"></el-option>
+        <el-option label="原创" value="原创"/>
+        <el-option label="转载" value="转载"/>
+        <el-option label="翻译" value="翻译"/>
+        <el-option label="其他" value="其他"/>
       </el-select>
     </el-form-item>
     <el-form-item label="封面图">
@@ -48,13 +48,14 @@
     </el-form-item>
     <el-form-item label="内容" style="margin-bottom: -8px">
       <el-upload style="margin-bottom: 16px" action="" :before-upload="beforeUpload">
-        <el-button slot="trigger" size="small" type="primary" round><i class="el-icon-upload el-icon--right"></i> 上传文件
+        <el-button slot="trigger" size="small" type="primary" round>
+          <i class="el-icon-upload el-icon--right"/> 上传文件
         </el-button>
         <div slot="tip" class="el-upload__tip">或者选择 <b>Markdown</b> 文件上传</div>
       </el-upload>
     </el-form-item>
-    <mavon-editor style="min-height: 800px" v-model="form.content"></mavon-editor>
-    <div style="margin: 16px 80px">
+    <mavon-editor style="min-height: 800px; margin-bottom: 72px" v-model="form.content"/>
+    <div class="action">
       <el-button type="primary" @click="submit('form')" round>立即{{$route.params['id']?'更新':'创建'}}</el-button>
       <el-button @click="reset('form')" round>重置</el-button>
     </div>
@@ -86,5 +87,14 @@
     width: 90px;
     margin-left: 10px;
     vertical-align: bottom;
+  }
+
+  .action {
+    height: 64px;
+    line-height: 64px;
+    padding: 0 80px;
+    position: fixed;
+    bottom: 0;
+    z-index: 2000;
   }
 </style>

@@ -9,13 +9,13 @@
                router>
 
         <el-menu-item index="/admin/dashboard">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-menu"/>
           <span slot="title">仪表盘</span>
         </el-menu-item>
 
         <el-submenu index="article">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i class="el-icon-location"/>
             <span>文章</span>
           </template>
           <el-menu-item index="/admin/article/create" :route="{path:'/admin/article/create'}">创建文章</el-menu-item>
@@ -24,18 +24,23 @@
         </el-submenu>
 
         <el-menu-item index="/admin/comments">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-menu"/>
           <span slot="title">评论</span>
         </el-menu-item>
 
-        <el-menu-item index="/admin/system">
-          <i class="el-icon-menu"></i>
-          <span slot="title">系统</span>
-        </el-menu-item>
+        <el-submenu index="/admin/system">
+          <template slot="title">
+            <i class="el-icon-location"/>
+            <span>系统</span>
+          </template>
+          <el-menu-item index="/admin/system/blog" :route="{path:'/admin/system/blog'}">博客</el-menu-item>
+          <el-menu-item index="/admin/system/export" :route="{path:'/admin/system/export'}">导出</el-menu-item>
+          <el-menu-item index="/admin/system/password" :route="{path:'/admin/system/password'}">密码</el-menu-item>
+        </el-submenu>
 
         <el-submenu index="page">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i class="el-icon-location"/>
             <span>页面设置</span>
           </template>
           <el-menu-item index="/admin/aboutme" :route="{path:'/admin/aboutme'}">关于我</el-menu-item>
@@ -89,7 +94,6 @@
   .main {
     padding: 16px;
     height: calc(100% - 104px);
-    /*overflow: auto;*/
   }
 
   .fade-enter-to, .fade-leave-active {

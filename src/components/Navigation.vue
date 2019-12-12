@@ -6,8 +6,8 @@
         <el-row>
           <el-col class="nav-title" :xs="20" :sm="12">
             <router-link class="title" to="/">
-              <img class="avatar" src="https://avatars3.githubusercontent.com/u/19601938?v=4"/>
-              Lee's Blog
+<!--              <img class="avatar" src="https://avatars3.githubusercontent.com/u/19601938?v=4"/>-->
+              <span>{{preference.name}}</span>
             </router-link>
           </el-col>
           <el-col class="nav-menu" :xs="0" :sm="12">
@@ -40,6 +40,12 @@
   export default {
     name: "Navigation",
     components: {List},
+    props: {
+      preference: {
+        required: true,
+        type: Object
+      }
+    },
     data() {
       return {
         direction: 'ttb',

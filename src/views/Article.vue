@@ -2,7 +2,15 @@
   <div>
     <el-row>
       <el-col :xs="24" :sm="18">
-        <article-body :article-id="$route.params['id']" @toc-generated="generateToc"/>
+        <article-body
+          :article-id="$route.params['id']"
+          @toc-generated="generateToc"
+          @article-rendered="setTitle"
+          v-show="loaded"/>
+        <div class="loading" v-show="!loaded">
+          <progress-spinner/>
+          <p>正在加载</p>
+        </div>
         <el-card class="comment-box">
           评论
         </el-card>
@@ -15,20 +23,20 @@
       </el-col>
     </el-row>
 
-    <back-top v-show="scrollTop > 200"></back-top>
+    <back-top v-show="scrollTop > 200"/>
   </div>
-
 </template>
 
 <script>
   import ArticleBody from "@/components/ArticleBody";
   import BackTop from "@/components/BackTop";
+  import ProgressSpinner from "@/components/ProgressSpinner";
 
   import mixin from "@/mixins/article";
 
   export default {
     name: "Article",
-    components: {ArticleBody, BackTop},
+    components: {ArticleBody, BackTop, ProgressSpinner},
     mixins: [mixin]
   }
 </script>
@@ -50,5 +58,10 @@
 
   .el-divider__text {
     background-color: #f7f7f7;
+  }
+
+  .loading {
+    margin: 16px 0;
+    text-align: center;
   }
 </style>

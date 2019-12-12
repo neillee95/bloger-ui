@@ -1,9 +1,9 @@
 <template>
   <el-card>
-    <div class="title">[{{article.type}}] {{article.title}}</div>
+    <div class="title">{{'[' + article.type + ']'}} {{article.title}}</div>
     <div class="subtitle">
       <span style="margin-right: 8px">
-        <i class="el-icon-time"></i> {{dateFormat(article.createTime)}}
+        <i class="el-icon-time"/> {{dateFormat(article.createTime)}}
       </span>
     </div>
     <div>
@@ -46,7 +46,7 @@
     watch: {
       markedContent() {
         this.$nextTick(() => {
-          this.$emit('article-rendered');
+          this.$emit('article-rendered', this.article);
         });
       }
     },

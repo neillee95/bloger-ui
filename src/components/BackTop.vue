@@ -1,5 +1,5 @@
 <template>
-  <el-button class="backtop" type="primary" icon="el-icon-caret-top" circle @click="backTop"></el-button>
+  <el-button class="backtop" type="primary" icon="el-icon-caret-top" circle @click="backTop"/>
 </template>
 
 <script>

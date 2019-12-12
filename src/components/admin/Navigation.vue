@@ -1,8 +1,13 @@
 <template>
   <div class="nav">
-    <el-button class="sidebar-toggle" icon="el-icon-s-fold" circle/>
-    <router-link to="/admin" style="font-size: 18px">
-      <b>Bloger</b>
+    <div>
+      <el-button class="sidebar-toggle" icon="el-icon-s-fold" circle/>
+      <router-link to="/admin" style="font-size: 18px">
+        <b>Bloger</b>
+      </router-link>
+    </div>
+    <router-link to="/" style="padding: 8px" title="前往博客">
+      Bloger
     </router-link>
   </div>
 </template>
@@ -13,12 +18,14 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .nav {
-    padding: 12px 16px;
+    padding: 10px 16px;
     background-color: white;
     height: 48px;
-    line-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   a {

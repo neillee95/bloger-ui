@@ -2,7 +2,7 @@ import router from '@/router';
 import store from '@/store';
 import {getToken} from '@/utils/auth';
 
-const loginPath = '/admin/login';
+import constant from '@/constant';
 
 router.beforeEach(async (to, from, next) => {
   store.commit('closeDrawer');
@@ -14,7 +14,7 @@ router.beforeEach(async (to, from, next) => {
     const hasToken = getToken();
 
     if (hasToken) {
-      if (to.path === loginPath) {
+      if (to.path === constant.LOGIN_PATH) {
         // if is logged in, redirect to the home page
         next({path: '/'})
       } else {
@@ -22,10 +22,10 @@ router.beforeEach(async (to, from, next) => {
       }
     } else {
       /* has no token*/
-      if (to.path === loginPath) {
+      if (to.path === constant.LOGIN_PATH) {
         next()
       } else {
-        next(`${loginPath}?redirect=${to.path}`);
+        next({path: `${constant.LOGIN_PATH}?redirect=${to.path}`});
       }
     }
   }

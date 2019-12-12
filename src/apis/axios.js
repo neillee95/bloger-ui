@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {Message, MessageBox} from 'element-ui';
-import {getToken, removeToken} from '../utils/auth';
-import router from "../router";
+import {getToken, removeToken} from '@/utils/auth';
+import router from "@/router";
 
 const axiosInstance = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
-  withCredentials: false,
+  withCredentials: true,
   timeout: 8000
 });
 
@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
     if (response) {
       const status = response.status;
       switch (status) {
-        case 401: {
+        case 401:
           MessageBox.confirm('登录信息已失效，请重新登录', '提示', {
             confirmButtonText: '重新登录',
             cancelButtonText: '取消',
@@ -38,8 +38,7 @@ axiosInstance.interceptors.response.use(
           }).then(() => {
             removeToken();
             location.reload();
-          })
-        }
+          });
           break;
         case 403:
           Message({

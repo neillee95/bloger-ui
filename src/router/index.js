@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import {adminRoute, appRoute} from "./modules";
+import {adminRoute, appRoute, errorRoutes} from "./modules";
 
 Vue.use(VueRouter);
 
@@ -12,7 +12,8 @@ const routes = [
     component: () => import('@/views/admin/Login')
   },
   appRoute,
-  adminRoute
+  adminRoute,
+  ...errorRoutes
 ];
 
 const router = new VueRouter({

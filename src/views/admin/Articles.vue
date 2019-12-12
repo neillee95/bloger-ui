@@ -1,15 +1,17 @@
 <template>
   <div>
-    <el-input class="search-input"
-              placeholder="请输入标题"
-              prefix-icon="el-icon-search"
-              v-model="search"
-              clearable/>
+    <div>
+      <el-input class="search-input"
+                placeholder="请输入标题"
+                prefix-icon="el-icon-search"
+                v-model="search"
+                clearable/>
+    </div>
 
     <el-table :data="articles" style="width: 100%">
       <el-table-column label="标题" style="min-width: 200px">
         <template slot-scope="scope">
-          <router-link :to="`/admin/article/${scope.row.id}/preview`" title="预览">{{scope.row.title}}</router-link>
+          <router-link :to="`/admin/article/${scope.row._id}/preview`" title="预览">{{scope.row.title}}</router-link>
         </template>
       </el-table-column>
       <el-table-column prop="type" label="类型" width="80"/>
@@ -31,8 +33,8 @@
       </el-table-column>
       <el-table-column label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row.id)" type="text" size="small">编辑</el-button>
-          <el-button class="color-danger" @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
+          <el-button @click="handleEdit(scope.row._id)" type="text" size="small">编辑</el-button>
+          <el-button class="color-danger" @click="handleDelete(scope.row._id)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

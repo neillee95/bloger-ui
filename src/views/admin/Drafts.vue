@@ -9,7 +9,7 @@
     <el-table :data="articles" style="width: 100%">
       <el-table-column label="标题">
         <template slot-scope="scope">
-          <router-link :to="`/admin/article/${scope.row.id}/preview`" title="预览">{{scope.row.title}}</router-link>
+          <router-link :to="`/admin/article/${scope.row._id}/preview`" title="预览">{{scope.row.title}}</router-link>
         </template>
       </el-table-column>
       <el-table-column prop="type" label="类型" width="80"/>
@@ -25,9 +25,9 @@
       </el-table-column>
       <el-table-column label="操作" width="120">
         <template slot-scope="scope">
-          <el-button class="color-success" @click="handlePublish(scope.row.id)" type="text" size="small">发布</el-button>
-          <el-button @click="handleEdit(scope.row.id)" type="text" size="small">编辑</el-button>
-          <el-button class="color-danger" @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
+          <el-button class="color-success" @click="handlePublish(scope.row._id)" type="text" size="small">发布</el-button>
+          <el-button @click="handleEdit(scope.row._id)" type="text" size="small">编辑</el-button>
+          <el-button class="color-danger" @click="handleDelete(scope.row._id)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

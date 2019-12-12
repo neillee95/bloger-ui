@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-html="content"></div>
-    <message-board/>
+    <message-board class="message-board"/>
   </div>
 </template>
 
@@ -19,5 +19,7 @@
 </script>
 
 <style scoped>
-
+  .message-board {
+    margin-top: 48px;
+  }
 </style>

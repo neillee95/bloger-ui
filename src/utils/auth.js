@@ -1,15 +1,14 @@
 import {getCookies, removeCookies, setCookies} from './cookie'
-
-const tokenKey = 'AuthToken';
+import constant from '@/constant';
 
 export function setToken(token) {
-  setCookies(tokenKey, token);
+  setCookies(constant.TOKEN_KEY, token);
 }
 
 export function getToken() {
-  return getCookies(tokenKey);
+  return getCookies(constant.TOKEN_KEY);
 }
 
 export function removeToken() {
-  removeCookies(tokenKey);
+  removeCookies(constant.TOKEN_KEY);
 }

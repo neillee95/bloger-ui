@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <navigation/>
+    <navigation :preference="preference"/>
     <el-row class="main">
       <el-col :xs="0" :sm="2"/>
       <el-col :xs="24" :sm="20">
@@ -10,18 +10,37 @@
       </el-col>
       <el-col :xs="0" :sm="2"/>
     </el-row>
-    <Footer/>
-
+    <b-footer :preference="preference"/>
   </div>
 </template>
 
 <script>
   import Navigation from "@/components/Navigation";
-  import Footer from '@/components/Footer';
+  import BFooter from '@/components/Footer';
+
+  import {getBlogConfig} from "@/apis/blog";
 
   export default {
     name: "Layout",
-    components: {Footer, Navigation}
+    components: {BFooter, Navigation},
+    data() {
+      return {
+        preference: {}
+      }
+    },
+    methods: {
+      getBlogConfig() {
+        getBlogConfig().then(({data}) => {
+          if (data && data.data) {
+            this.preference = data.data;
+            this.$store.commit('setPreference', this.preference);
+          }
+        });
+      }
+    },
+    created() {
+      this.getBlogConfig();
+    }
   }
 </script>
 
