@@ -1,9 +1,8 @@
 <template>
   <div class="divider">
-    <span class="text" :style="{color: textColor}">
-      {{text}}
-    </span>
-    <div class="line"/>
+    <div :class="['line', position === 'left' ? 'line-0' : '']"/>
+    <span class="text" :style="{color: textColor}">{{text}}</span>
+    <div :class="['line', position === 'right' ? 'line-0' : '']"/>
   </div>
 </template>
 
@@ -18,12 +17,16 @@
       'text-color': {
         type: String,
         default: '#b0baba'
+      },
+      position: {
+        type: String,
+        default: 'left'
       }
     }
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .divider {
     margin: 16px 0;
     display: flex;
@@ -39,5 +42,9 @@
     width: 100%;
     height: 1px;
     background-color: #b0baba;
+
+    &-0 {
+      width: 0;
+    }
   }
 </style>
