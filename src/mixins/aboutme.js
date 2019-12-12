@@ -23,6 +23,7 @@ const mixin = {
   },
   created() {
     this.getAboutMe();
+    document.title = "AboutMe";
   }
 };
 

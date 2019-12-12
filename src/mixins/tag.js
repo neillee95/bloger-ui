@@ -17,6 +17,7 @@ const mixin = {
   },
   created() {
     this.getArticlesByTag();
+    document.title = `Tag - ${this.$route.params['name']}`;
   }
 };
 

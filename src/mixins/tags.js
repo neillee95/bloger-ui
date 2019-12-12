@@ -20,6 +20,7 @@ const mixin = {
   },
   created() {
     this.getTags();
+    document.title = "Tags";
   }
 };
 
