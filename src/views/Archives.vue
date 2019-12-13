@@ -3,7 +3,7 @@
     <el-timeline>
       <el-timeline-item v-for="(item,index) in archives"
                         :key="index"
-                        :timestamp="`${item.timePoint} (${(item.articles || []).length})`"
+                        :timestamp="`${item._id} (${item.count})`"
                         placement="top"
                         size="large"
                         color="#409eff">
@@ -13,7 +13,7 @@
           <p class="create-time">
             {{dateFormat(article.createTime)}}
           </p>
-          <el-link type="primary" :href="`/a/${article._id}`">
+          <el-link type="primary" :href="`/a/${article.id}`">
             {{article.title}}
           </el-link>
         </el-card>
