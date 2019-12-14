@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row :gutter="10" style="overflow: auto">
+    <el-row :gutter="10" style="overflow: auto" v-if="total > 0">
       <el-col :xs="24" :sm="12" :md="8" :lg="6"
               v-for="(item,index) in articles" :key="index"
               @mouseenter.native="summary=item.id"
@@ -25,7 +25,12 @@
         </router-link>
       </el-col>
     </el-row>
-    <pagination :hide-on-single-page="false"/>
+    <div v-else>
+      这里空空如也
+    </div>
+    <pagination :current="currentPage"
+                :total="total"
+                @page-changed="pageChanged"/>
   </div>
 </template>
 

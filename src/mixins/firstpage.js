@@ -5,14 +5,19 @@ const mixin = {
   data() {
     return {
       articles: [],
-      summary: ''
+      summary: '',
+      currentPage: 1,
+      total: 0
     }
   },
   methods: {
     getArticles() {
-      getArticles().then(({data}) => {
+      getArticles(this.currentPage).then(({data}) => {
         if (data) {
-          this.articles = data.data;
+          const pageResult = data.data;
+          this.currentPage = pageResult.current;
+          this.total = pageResult.total;
+          this.articles = pageResult.results;
         }
       });
     },
@@ -22,11 +27,18 @@ const mixin = {
     removeMarkdownSymbol(content) {
       const reg = /[`#*\[\]\-!>]/g;
       return content.replace(reg, "") + "...";
+    },
+    pageChanged(currentPage) {
+       this.currentPage = currentPage;
+       this.getArticles();
     }
   },
   created() {
     this.getArticles();
-    document.title = "Lee's Blog";
+    const title = this.$store.state.preference.name;
+    if (title) {
+      document.title = title;
+    }
   }
 };
 

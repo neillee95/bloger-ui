@@ -1,7 +1,7 @@
 import axios from "./axios";
 
-export function getArticles() {
-  return axios.get('/articles');
+export function getArticles(page) {
+  return axios.get('/articles', {params: {page}});
 }
 
 export function getArticle(articleId) {

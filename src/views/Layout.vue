@@ -34,6 +34,9 @@
           if (data && data.data) {
             this.preference = data.data;
             this.$store.commit('setPreference', this.preference);
+            if (this.$route.path === '/') {
+              document.title = this.preference.name;
+            }
           }
         });
       }
