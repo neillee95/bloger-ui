@@ -1,36 +1,33 @@
 <template>
-  <div class="nav">
-    <el-row>
-      <el-col :xs="0" :sm="2"/>
-      <el-col :xs="24" :sm="20">
-        <el-row>
-          <el-col class="nav-title" :xs="20" :sm="12">
-            <router-link class="title" to="/">
-<!--              <img class="avatar" src="https://avatars3.githubusercontent.com/u/19601938?v=4"/>-->
-              <span>{{preference.name}}</span>
-            </router-link>
-          </el-col>
-          <el-col class="nav-menu" :xs="0" :sm="12">
-            <router-link class="nav-menu-item" to="/tags">Tags</router-link>
-            <router-link class="nav-menu-item" to="/archives">Archives</router-link>
-            <router-link class="nav-menu-item" to="/aboutme">About me</router-link>
-          </el-col>
-          <el-col class="nav-drawer-toggle" :xs="4" :sm="0">
-            <el-button class="nav-drawer-toggle-button" icon="el-icon-s-unfold" circle @click="openDrawer"/>
-          </el-col>
-        </el-row>
+  <el-row class="nav">
+    <el-col :xs="0" :sm="2"/>
+    <el-col :xs="24" :sm="20">
+      <el-col class="nav-title" :xs="20" :sm="12">
+        <router-link class="title" to="/">
+<!--          <img class="avatar" src="https://avatars3.githubusercontent.com/u/19601938?v=4"/>-->
+          <span>{{preference.name}}</span>
+        </router-link>
       </el-col>
-      <el-col :xs="0" :sm="2"/>
-      <el-col :xs="24" :sm="0">
-        <el-drawer title="Lee's Blog"
-                   :visible.sync="open"
-                   :before-close="handleClose"
-                   :direction="direction">
-          <list :items="items"/>
-        </el-drawer>
+      <el-col class="nav-menu" :xs="0" :sm="12">
+        <router-link class="nav-menu-item" to="/tags">Tags</router-link>
+        <router-link class="nav-menu-item" to="/archives">Archives</router-link>
+        <router-link class="nav-menu-item" to="/aboutme">About me</router-link>
       </el-col>
-    </el-row>
-  </div>
+      <el-col class="nav-drawer-toggle" :xs="4" :sm="0">
+        <el-button class="nav-drawer-toggle-button" icon="el-icon-s-unfold" circle @click="openDrawer"/>
+      </el-col>
+    </el-col>
+    <el-col :xs="0" :sm="2"/>
+    <el-col :xs="24" :sm="0">
+      <el-drawer class="nav-drawer"
+                 :title="preference.name"
+                 :visible.sync="open"
+                 :before-close="handleClose"
+                 :direction="direction">
+        <list :items="items"/>
+      </el-drawer>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
