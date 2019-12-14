@@ -47,6 +47,9 @@
       markedContent() {
         this.$nextTick(() => {
           this.$emit('article-rendered', this.article);
+          document.querySelectorAll("img").forEach(it => {
+            it.classList.add("article-image");
+          });
         });
       }
     },
@@ -91,10 +94,6 @@
     margin-right: 8px;
     color: #66b1ff;
     text-decoration: none;
-  }
-
-  img {
-    width: 100%;
   }
 
   .content {
