@@ -39,7 +39,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination :hide-on-single-page="false"/>
+    <pagination/>
   </div>
 </template>
 

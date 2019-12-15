@@ -30,6 +30,11 @@ const adminRoute = {
       component: () => import('@/views/admin/Blog')
     },
     {
+      path: 'system/leavemessages',
+      name: 'leavemessages',
+      component: () => import('@/views/admin/LeaveMessages')
+    },
+    {
       path: 'system/export',
       name: 'export',
       component: () => import('@/views/admin/Export')

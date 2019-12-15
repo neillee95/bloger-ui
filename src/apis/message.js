@@ -9,3 +9,7 @@ export function leaveMessage(message) {
       }
     });
 }
+
+export function getLeaveMessages() {
+  return axios.get('/messages');
+}

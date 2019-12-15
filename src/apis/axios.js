@@ -48,7 +48,7 @@ axiosInstance.interceptors.response.use(
           });
           break;
         case 404:
-          router.push({path: '/404'});
+          router.replace({path: '/404'});
           break;
         case 500:
           Message({

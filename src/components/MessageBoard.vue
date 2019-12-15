@@ -23,15 +23,12 @@
     </div>
     <div style="margin: 32px 0 16px 0">
       <text-divider position="center" text="留言"/>
-      <el-card>随便看看😊</el-card>
-      <el-card>
-        A yellow face with smiling eyes and a broad, closed smile turning up to rosy cheeks. Often expresses genuine
-        happiness and warm, positive feelings.<br><br>
-
-        On Snapchat, this emoji next to a contact denotes that you message that person often but they aren't your #1
-        Best Friend.<br><br>
-
-        Smiling Face With Smiling Eyes was approved as part of Unicode 6.0 in 2010 and added to Emoji 1.0 in 2015.🐵🐱
+      <el-card v-for="item in messages">
+        <div>
+          <span>{{item.name}}</span>
+          <span class="time">{{dateFormat(item.time)}}</span>
+        </div>
+        <p>{{item.message}}</p>
       </el-card>
     </div>
   </div>
@@ -41,8 +38,9 @@
   import TextDivider from "./TextDivider";
   import UnderlineInput from "./UnderlineInput";
 
-  import {leaveMessage} from "@/apis/message";
+  import {leaveMessage, getLeaveMessages} from "@/apis/message";
   import response from "@/apis/response";
+  import {dateFormat} from "@/utils/date";
 
   export default {
     name: "MessageBoard",
@@ -56,10 +54,12 @@
           email: '',
           website: '',
           message: ''
-        }
+        },
+        messages: []
       }
     },
     methods: {
+      dateFormat,
       validateFields() {
         const message = this.message;
         if (message.name && message.email && message.website && message.message) {
@@ -82,7 +82,17 @@
             this.sending = false;
           });
         }
+      },
+      getLeaveMessages() {
+        getLeaveMessages().then(({data}) => {
+          if (data) {
+            this.messages = data.data;
+          }
+        });
       }
+    },
+    created() {
+      this.getLeaveMessages();
     }
   }
 </script>
@@ -96,5 +106,11 @@
     width: 100%;
     display: inline-block;
     margin-bottom: 8px !important;
+  }
+
+  .time {
+    color: #b0baba;
+    font-size: 12px;
+    margin-left: 16px;
   }
 </style>
