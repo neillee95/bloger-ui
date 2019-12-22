@@ -15,7 +15,7 @@ const mixin = {
   methods: {
     getAboutMe() {
       getAboutMe().then(({data}) => {
-        if (data) {
+        if (data && data.data) {
           this.markdownContent = data.data;
         }
       });

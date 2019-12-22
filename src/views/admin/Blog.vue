@@ -56,7 +56,6 @@
         getBlogConfig().then(({data}) => {
           if (data && data.data) {
             this.form = data.data;
-            console.log(this.form);
           }
         });
       },

@@ -23,13 +23,18 @@
     </div>
     <div style="margin: 32px 0 16px 0">
       <text-divider position="center" text="留言"/>
-      <el-card v-for="item in messages">
-        <div>
-          <span>{{item.name}}</span>
-          <span class="time">{{dateFormat(item.time)}}</span>
-        </div>
-        <p>{{item.message}}</p>
-      </el-card>
+      <div v-if="messages.length > 0">
+        <el-card v-for="(item,index) in messages" :key="index" >
+          <div>
+            <span>{{item.name}}</span>
+            <span class="time">{{dateFormat(item.time)}}</span>
+          </div>
+          <p>{{item.message}}</p>
+        </el-card>
+      </div>
+      <div class="empty-message" v-else>
+        还没有留言
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +91,10 @@
       getLeaveMessages() {
         getLeaveMessages().then(({data}) => {
           if (data) {
-            this.messages = data.data;
+            const messages = data.data;
+            if (messages && Array.isArray(messages)) {
+              this.messages = data.data;
+            }
           }
         });
       }
