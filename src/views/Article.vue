@@ -1,30 +1,29 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :xs="24" :sm="18">
-        <article-body
-          :article-id="$route.params['id']"
-          @toc-generated="generateToc"
-          @article-rendered="setTitle"
-          v-show="loaded"/>
-        <div class="loading" v-show="!loaded">
-          <progress-spinner/>
-          <p>正在加载</p>
-        </div>
-        <el-card class="comment-box">
-          评论
-        </el-card>
-      </el-col>
-      <el-col class="side-bar" :xs="0" :sm="6">
-        <div :class="{'catalog-fixed': scrollTop > 80}">
-          <div>目录</div>
-          <div v-html="toc"></div>
-        </div>
-      </el-col>
-    </el-row>
+  <el-row>
+    <el-col :xs="24" :sm="18">
+      <article-body
+        :article-id="$route.params['id']"
+        @toc-generated="generateToc"
+        @article-rendered="setTitle"
+        v-show="loaded"/>
+      <div class="loading" v-show="!loaded">
+        <progress-spinner/>
+        <p>正在加载</p>
+      </div>
+      <el-card class="comment-box" v-if="false">
+        评论
+      </el-card>
+    </el-col>
+
+    <el-col class="side-bar" :xs="0" :sm="6">
+      <div :class="{'catalog-fixed': scrollTop > 80}">
+        <div>目录</div>
+        <div v-html="toc"></div>
+      </div>
+    </el-col>
 
     <back-top v-show="scrollTop > 200"/>
-  </div>
+  </el-row>
 </template>
 
 <script>

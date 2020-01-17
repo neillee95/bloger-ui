@@ -2,8 +2,11 @@
   <el-card>
     <div class="title">{{'[' + article.type + ']'}} {{article.title}}</div>
     <div class="subtitle">
-      <span style="margin-right: 8px">
+      <span class="article-indicator" title="发布时间">
         <i class="el-icon-time"/> {{dateFormat(article.createTime)}}
+      </span>
+      <span class="article-indicator" title="阅读次数">
+        <i class="el-icon-user-solid"/> {{article.viewCount}}
       </span>
     </div>
     <div>
@@ -98,5 +101,9 @@
 
   .content {
     margin-top: 32px;
+  }
+
+  .article-indicator {
+    margin-right: 8px;
   }
 </style>

@@ -29,8 +29,8 @@ const mixin = {
       return content.replace(reg, "") + "...";
     },
     pageChanged(currentPage) {
-       this.currentPage = currentPage;
-       this.getArticles();
+      this.currentPage = currentPage;
+      this.getArticles();
     }
   },
   created() {
