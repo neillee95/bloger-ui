@@ -65,7 +65,10 @@
 
   export default {
     name: "Layout",
-    components: {Navigation}
+    components: {Navigation},
+    created() {
+      document.title = 'ADMIN';
+    }
   }
 </script>
 

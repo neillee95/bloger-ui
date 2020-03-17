@@ -24,6 +24,9 @@ const mixin = {
         });
       }
     }
+  },
+  created() {
+    document.title = 'LOGIN';
   }
 };
 
