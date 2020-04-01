@@ -7,7 +7,7 @@
         @article-rendered="setTitle"
         v-show="loaded"/>
       <div class="loading" v-show="!loaded">
-        <progress-spinner/>
+        <block-progress-spinner style="margin: 20px auto"/>
         <p>正在加载</p>
       </div>
       <el-card class="comment-box" v-if="false">
@@ -29,13 +29,13 @@
 <script>
   import ArticleBody from "@/components/ArticleBody";
   import BackTop from "@/components/BackTop";
-  import ProgressSpinner from "@/components/ProgressSpinner";
+  import BlockProgressSpinner from '@/components/BlockProgressSpinner';
 
   import mixin from "@/mixins/article";
 
   export default {
     name: "Article",
-    components: {ArticleBody, BackTop, ProgressSpinner},
+    components: {ArticleBody, BackTop, BlockProgressSpinner},
     mixins: [mixin]
   }
 </script>
