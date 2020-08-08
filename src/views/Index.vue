@@ -75,6 +75,7 @@
     }
 
     &-summary {
+      word-break: break-word;
       position: absolute;
       padding: 0 8%;
       height: 80%;

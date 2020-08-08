@@ -14,7 +14,7 @@
         # {{tag}}
       </router-link>
     </div>
-    <div class="content" ref="content" v-html="markedContent"></div>
+    <div class="article-content" ref="content" v-html="markedContent"></div>
   </el-card>
 </template>
 
@@ -99,7 +99,7 @@
     text-decoration: none;
   }
 
-  .content {
+  .article-content {
     margin-top: 32px;
   }
 

@@ -4,6 +4,11 @@
   & a {
     text-decoration: none;
     color: #2c3e50;
+    line-height: 1.8em;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
