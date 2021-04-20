@@ -12,7 +12,7 @@
           placeholder="password"
           type="password"
           v-model="form.password" required/>
-        <el-button class="form-submit" type="primary" @click="handleSubmit()">
+        <el-button class="form-submit" type="primary" :loading="submitting" @click="handleSubmit">
           LOGIN
         </el-button>
       </div>
@@ -27,7 +27,7 @@
   export default {
     name: "Login",
     components: {UnderlineInput},
-    mixins: [mixin]
+    mixins: [mixin],
   }
 </script>
 

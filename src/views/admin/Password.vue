@@ -21,6 +21,7 @@
   import response from "@/apis/response";
   import {removeToken} from "@/utils/auth";
   import constant from '@/constant';
+  import sha256 from 'js-sha256';
 
   export default {
     name: "Password",
@@ -77,7 +78,12 @@
         this.$refs['form'].resetFields();
       },
       updatePassword() {
-        updatePassword(this.form).then(({data}) => {
+        const form = Object.assign({}, this.form);
+        form.oldPassword = sha256.sha256(form.oldPassword);
+        form.newPassword = sha256.sha256(form.newPassword);
+        form.confirmPassword = sha256.sha256(form.confirmPassword);
+
+        updatePassword(form).then(({data}) => {
           if (data && data.code === response.success) {
             this.$message.success('更新成功, 请重新登录');
             removeToken();
