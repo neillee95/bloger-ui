@@ -24,7 +24,7 @@
           </el-col>
         </el-row>
         <div style="text-align: center; margin-top: 8px">
-          <a href="javascript:" @click="$router.push('/admin')">开始使用</a>
+          <a href="javascript:" @click="$router.push({name: 'dashboard'})">开始使用</a>
         </div>
         <div style="text-align: center; margin-top: 8px">
           Powered by <a href="https://github.com/neillee95/bloger">Bloger</a>

@@ -32,3 +32,25 @@ html, body {
   text-align: center;
   margin: 16px 0;
 }
+
+.flex {
+  &-align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-horizontal-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-vertical-center {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.no-padding {
+  padding: 0;
+}

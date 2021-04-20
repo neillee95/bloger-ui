@@ -36,7 +36,6 @@
           <el-menu-item index="/admin/system/blog" :route="{path:'/admin/system/blog'}">博客</el-menu-item>
           <el-menu-item index="/admin/system/leavemessages" :route="{path:'/admin/system/leavemessages'}">留言</el-menu-item>
           <el-menu-item index="/admin/system/export" :route="{path:'/admin/system/export'}">导出</el-menu-item>
-          <el-menu-item index="/admin/system/password" :route="{path:'/admin/system/password'}">密码</el-menu-item>
         </el-submenu>
 
         <el-submenu index="page">

@@ -16,7 +16,8 @@ router.beforeEach(async (to, from, next) => {
     if (hasToken) {
       if (to.path === constant.LOGIN_PATH) {
         // if is logged in, redirect to the home page
-        next({path: '/'})
+        // next({path: '/'})
+        await router.push('/');
       } else {
         next();
       }
@@ -25,7 +26,8 @@ router.beforeEach(async (to, from, next) => {
       if (to.path === constant.LOGIN_PATH) {
         next()
       } else {
-        next({path: `${constant.LOGIN_PATH}?redirect=${to.path}`});
+        // next({path: `${constant.LOGIN_PATH}?redirect=${to.path}`});
+        await router.push(`${constant.LOGIN_PATH}?redirect=${to.path}`);
       }
     }
   }

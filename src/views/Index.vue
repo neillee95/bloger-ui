@@ -79,11 +79,10 @@
       position: absolute;
       padding: 0 8%;
       height: 80%;
-      line-height: 1.2em;
-      overflow-wrap: break-word;
+      line-height: 1.4em;
       color: white;
-      background-color: rgba(67, 67, 67, 0.8);
       display: flex;
+      background-color: rgba(67, 67, 67, 0.8);
       align-items: center;
     }
 

@@ -34,7 +34,7 @@
   export default {
     name: "Archives",
     components: {ProgressSpinner},
-    mixins: [mixin]
+    mixins: [mixin],
   }
 </script>
 

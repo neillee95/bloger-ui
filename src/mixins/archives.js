@@ -15,10 +15,10 @@ const mixin = {
   methods: {
     dateFormat,
     handleScroll() {
-      const scrollTop = scrollTop();
+      const sTop = scrollTop();
       const windowHeight = clientHeight();
-      const scrollHeight = scrollHeight();
-      if (scrollTop + windowHeight === scrollHeight) {
+      const sHeight = scrollHeight();
+      if (sTop + windowHeight >= sHeight) {
         if (this.loading || !this.hasMore) {
           return;
         }
@@ -31,15 +31,19 @@ const mixin = {
       getArchives(this.page, this.size).then(({data}) => {
         if (data) {
           const archives = data.data;
-          this.archives.push(...archives);
-          if (archives.length < this.size) {
+          if (Array.isArray(archives)) {
+            this.archives.push(...archives.reverse());
+            if (archives.length < this.size) {
+              this.hasMore = false;
+            }
+            archives.forEach(it => {
+              if (Array.isArray(it.articles)) {
+                this.skip += it.articles.length;
+              }
+            });
+          } else {
             this.hasMore = false;
           }
-          archives.forEach(it => {
-            if (Array.isArray(it.articles)) {
-              this.skip += it.articles.length;
-            }
-          });
         }
       }).finally(() => {
         this.loading = false;
