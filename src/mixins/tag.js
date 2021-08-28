@@ -1,14 +1,15 @@
-import {getArticlesByTag} from "@/apis/tag";
+import { getArticlesByTag } from "@/apis/tag";
 
 const mixin = {
   data() {
     return {
+      tag: this.$route.params['name'],
       articles: []
     }
   },
   methods: {
     getArticlesByTag() {
-      getArticlesByTag(window.escape(this.$route.params['name'])).then(({data}) => {
+      getArticlesByTag(window.decodeURI(this.tag)).then(({data}) => {
         if (data) {
           this.articles = data.data;
         }

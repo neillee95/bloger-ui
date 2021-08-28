@@ -1,10 +1,14 @@
-import {getTags} from "@/apis/tag";
+import { getTags } from "@/apis/tag";
 
 const mixin = {
   data() {
     return {
       tags: []
     }
+  },
+  created() {
+    this.getTags();
+    document.title = "Tags";
   },
   methods: {
     getTags() {
@@ -15,12 +19,8 @@ const mixin = {
       });
     },
     escape(val) {
-      return window.escape(val);
+      return window.encodeURI(val);
     }
-  },
-  created() {
-    this.getTags();
-    document.title = "Tags";
   }
 };
 

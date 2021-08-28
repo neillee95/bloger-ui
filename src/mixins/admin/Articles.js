@@ -13,14 +13,19 @@ const mixin = {
     handleEdit(articleId) {
       this.$router.push(`/admin/article/${articleId}/edit`);
     },
-    handleDelete(articleId) {
-      this.$confirm('删除后无法恢复, 是否确定?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.deleteArticle(articleId);
-      }).catch(() => {});
+    handleDelete(article) {
+      this.$confirm(
+        '是否确定删除文章 <b>' + article.title + '</b>?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          dangerouslyUseHTMLString: true
+        }
+      ).then(() => {
+        this.deleteArticle(article._id);
+      });
     },
     deleteArticle(articleId) {
       deleteArticle(articleId).then(({data}) => {

@@ -5,6 +5,8 @@ import response from "@/apis/response";
 const mixin = {
   data() {
     return {
+      articleId: this.$route.params['id'],
+      isCreate: this.$route.params['id'] === undefined,
       form: {
         title: '',
         content: '',
@@ -21,7 +23,8 @@ const mixin = {
         ]
       },
       inputVisible: false,
-      inputValue: ''
+      tagInput: '',
+      submitting: false
     };
   },
   computed: {
@@ -29,10 +32,33 @@ const mixin = {
       return (!this.form.tags || this.form.tags.length === 0) ? 0 : '10px';
     }
   },
+  beforeRouteUpdate() {
+    this.fetchArticle()
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.name === 'createArticle' || to.name === 'editArticle') {
+      location.href = to.fullPath
+    }
+    next()
+  },
+  created() {
+    if (!this.isCreate) {
+      this.fetchArticle()
+    }
+    this.$nextTick(() => {
+      this.$refs['title'].focus();
+    });
+  },
   methods: {
+    fetchArticle() {
+      getArticle(this.articleId).then(({data}) => {
+        this.form = data.data;
+      });
+    },
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.submitting = true
           if (this.$route.params['id']) {
             this.updateArticle();
           } else {
@@ -62,25 +88,27 @@ const mixin = {
     createArticle() {
       saveArticle(this.form).then(({data}) => {
         if (data && data.code === response.success) {
+          const articleId = data.data.id
           this.$message.success('创建成功');
-          setTimeout(() => {
-            this.$router.push('/admin/articles');
-          }, 1000);
+          this.$router.push(`/admin/article/${articleId}/preview`);
         } else {
           this.$message.error('创建失败');
         }
+      }).finally(() => {
+        this.submitting = false
       });
     },
     updateArticle() {
       updateArticle(this.$route.params['id'], this.form).then(({data}) => {
         if (data && data.code === response.success) {
+          const articleId = data.data.id
           this.$message.success('更新成功');
-          setTimeout(() => {
-            this.$router.push('/admin/articles');
-          }, 1000);
+          this.$router.push(`/admin/article/${articleId}/preview`);
         } else {
           this.$message.error('更新失败');
         }
+      }).finally(() => {
+        this.submitting = false
       });
     },
     handleClose(tag) {
@@ -93,24 +121,13 @@ const mixin = {
       });
     },
     handleInputConfirm() {
-      let inputValue = this.inputValue;
-      if (inputValue) {
-        this.form.tags.push(inputValue);
+      let tagInput = this.tagInput;
+      if (tagInput) {
+        this.form.tags.push(tagInput);
       }
       this.inputVisible = false;
-      this.inputValue = '';
+      this.tagInput = '';
     }
-  },
-  created() {
-    const articleId = this.$route.params['id'];
-    if (articleId) {
-      getArticle(articleId).then(({data}) => {
-        this.form = data.data;
-      });
-    }
-    this.$nextTick(() => {
-      this.$refs['title'].focus();
-    });
   }
 };
 
