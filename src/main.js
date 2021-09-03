@@ -21,6 +21,7 @@ const options = {
 Vue.use(VueInsProgressBar, options);
 
 import '@/styles/index.scss';
+import 'highlight.js/scss/default.scss';
 
 import './router/guard';
 

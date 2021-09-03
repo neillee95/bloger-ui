@@ -4,10 +4,18 @@ import {viewArticleAndCount} from '@/apis/article';
 const mixin = {
   data() {
     return {
+      articleId: this.$route.params['id'],
       scrollTop: 0,
       toc: null,
       loaded: false
     }
+  },
+  created() {
+    document.title = "loading";
+    window.addEventListener('scroll', this.handleScroll, true);
+    setTimeout(() => {
+      this.viewArticleAndCount();
+    }, 30000);
   },
   methods: {
     handleScroll() {
@@ -21,15 +29,8 @@ const mixin = {
       document.title = article.title;
     },
     viewArticleAndCount() {
-      viewArticleAndCount(this.$route.params["id"]);
+      viewArticleAndCount(this.articleId);
     }
-  },
-  created() {
-    document.title = "loading";
-    window.addEventListener('scroll', this.handleScroll, true);
-    setTimeout(() => {
-      this.viewArticleAndCount();
-    }, 30000);
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll, true);
