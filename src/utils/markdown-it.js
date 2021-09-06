@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import markdownItAnchor from 'markdown-it-anchor';
 import markdownItTocDoneRight from "markdown-it-toc-done-right";
-import hljs from 'highlight.js'
+import hljs from 'highlight.js';
 
 const markdownItOption = {
   // Enable HTML tags in source
@@ -51,7 +51,7 @@ const md = MarkdownIt(markdownItOption);
 export default md;
 
 export function getAnchorMd(callback) {
-  return md
+  return MarkdownIt(markdownItOption)
     .use(markdownItAnchor, markdownItAnchorOption)
     .use(markdownItTocDoneRight, {
       listType: 'ul',
